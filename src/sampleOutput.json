@@ -1,0 +1,71 @@
+{
+    "status": "ok",
+    "totalResults": 5,
+    "articles": [
+        {
+            "source": {
+                "id": "talksport",
+                "name": "TalkSport"
+            },
+            "author": "161385360554578",
+            "title": "Chelsea reject £55m Mount bid, Tonali set for Newcastle, Arsenal confident of Rice deal",
+            "description": "talkSPORT.com brings you all the latest football news, views and transfer gossip. Headlines: Chelsea reject new £55m Mason Mount bid – but Man United still hopeful of dealSandro Tonali will finalis…",
+            "url": "https://talksport.com/football/1472049/football-news-live-transfers-arsenal-rice-tonali-newcastle/",
+            "urlToImage": "https://talksport.com/wp-content/uploads/sites/5/2023/06/OQ-TALKSPORT-BLOG-23RD-JUNE-MOUNT.jpg?strip=all&quality=100&w=1500&h=1000&crop=1",
+            "publishedAt": "2023-06-24T09:47:43Z",
+            "content": "Newcastle’s Women’s side will become the first professional club next season to feature in the third-tier of the national women’s pyramid.\r\nBecky Langley’s side won promotion to the FA Women’s Nation… [+1169 chars]"
+        },
+        {
+            "source": {
+                "id": "fox-sports",
+                "name": "Fox Sports"
+            },
+            "author": "Martin Rogers",
+            "title": "MLB's London Series presents a real opportunity to grow baseball overseas",
+            "description": "MLB is doing its best to provide an authentic experience for English fans this weekend. There is no reason why it can't find some traction just as American football has.",
+            "url": "http://www.foxsports.com/stories/mlb/mlbs-london-series-presents-a-real-opportunity-to-grow-baseball-overseas",
+            "urlToImage": "https://a57.foxsports.com/statics.foxsports.com/www.foxsports.com/content/uploads/2023/06/1408/814/06.22.23_LondonBaseballNewsletter_Horizontal.jpg?ve=1&tl=1",
+            "publishedAt": "2023-06-23T14:58:16Z",
+            "content": "The Chicago Cubs are taking their recent hot streak 10 wins in their last 12 games and bringing it back to a familiar old stomping ground.\r\nLondon.\r\nFine, maybe it's not quite so familiar. After all,… [+5067 chars]"
+        },
+        {
+            "source": {
+                "id": "four-four-two",
+                "name": "FourFourTwo"
+            },
+            "author": "Matthew Ketchell",
+            "title": "What will Sandro Tonali's squad number be? The Newcastle United arrival could see Eddie Howe go into full 'Football Manager mode'",
+            "description": "Sandro Tonali's squad number is up in the air – and the imminent arrival at Newcastle United could prompt a squad overhaul, of sorts",
+            "url": "https://www.fourfourtwo.com/news/sandro-tonali-newcastle-united-arrival-could-see-eddie-howe-go-into-full-football-manager-mode",
+            "urlToImage": "https://cdn.mos.cms.futurecdn.net/LUtmvkfKZRvQ3Fp4e5bdZm-1200-80.jpg",
+            "publishedAt": "2023-06-23T13:47:59Z",
+            "content": "With various sources in England and Italy now indicating that Sandro Tonali's Newcastle United medical is set for this weekend, all the i's could be dotted before he returns to action in the U21 Euro… [+2504 chars]"
+        },
+        {
+            "source": {
+                "id": "four-four-two",
+                "name": "FourFourTwo"
+            },
+            "author": "Ryan Dabbs",
+            "title": "Real Madrid agree incredible €250m transfer with PSG for Kylian Mbappe: report",
+            "description": "Kylian Mbappe is finally set to play his club football at the Bernabeu, according to a French report",
+            "url": "https://www.fourfourtwo.com/news/real-madrid-agree-incredible-euro250m-transfer-with-psg-for-kylian-mbappe-report",
+            "urlToImage": "https://cdn.mos.cms.futurecdn.net/epkKvxXAVQR3SdQWN3Nmha-1200-80.jpg",
+            "publishedAt": "2023-06-23T10:58:03Z",
+            "content": "Real Madrid are finally set to land long-term target Kylian Mbappe this summer, after reportedly agreeing a €250m transfer fee with PSG for the French forward.\r\nLast week reports emerged suggesting M… [+2321 chars]"
+        },
+        {
+            "source": {
+                "id": "espn-cric-info",
+                "name": "ESPN Cric Info"
+            },
+            "author": null,
+            "title": "Five famous people (and one cat) you didn't know have ESPNcricinfo profiles | ESPNcricinfo.com",
+            "description": "Why do a footballer, a Nobel laureate and a prime minister (no, not Imran Khan) find themselves in the ESPNcricinfo player database? | ESPNcricinfo.com",
+            "url": "http://www.espncricinfo.com/story/_/id/29102695/five-famous-people-one-cat-know-espncricinfo-profiles",
+            "urlToImage": "https://a.espncdn.com/i/cricket/cricinfo/1221668_1296x1296.gif",
+            "publishedAt": "2020-04-27T07:20:43Z",
+            "content": "Why do a cat, a footballer, a Nobel laureate and a prime minister find themselves in the ESPNcricinfo database? Here are six player profiles you wouldn't have expected we had.\r\nPeter the catThe only … [+5504 chars]"
+        }
+    ]
+}
