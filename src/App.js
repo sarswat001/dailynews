@@ -41,7 +41,11 @@ export default class App extends Component {
             color='#f11946'
             progress={this.state.progress}
           />
-          <Navbar countryName={this.countryMap.get(this.state.country)} toggleCountry={this.toggleCountry}/>
+          <Navbar
+            history={this.props.history}
+            countryName={this.countryMap.get(this.state.country)}
+            toggleCountry={this.toggleCountry}
+          />
           <Routes>
             <Route exact path="/" element={<News setProgress={this.setProgress} key="main" pageSize={12} country={this.state.country} />} />
             <Route exact path="/general" element={<News setProgress={this.setProgress} key="general" pageSize={8} category="general" country={this.state.country} />} />

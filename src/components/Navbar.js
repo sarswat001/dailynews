@@ -5,6 +5,10 @@ import {
 
 export class Navbar extends Component {
 
+  handleCountryChange = (countryCode) => {
+    this.props.toggleCountry(countryCode);
+  };
+
   render() {
     return (
       <div>
@@ -30,11 +34,11 @@ export class Navbar extends Component {
                       </button>
 
                       <ul className="dropdown-menu">
-                        <li className="dropdown-item" onClick = {() => this.props.toggleCountry('in')}>India</li>
-                        <li className="dropdown-item" onClick = {() => this.props.toggleCountry('us')}>USA</li>
-                        <li className="dropdown-item" onClick = {() => this.props.toggleCountry('gb')}>United Kingdom</li>
-                        <li className="dropdown-item" onClick = {() => this.props.toggleCountry('jp')}>Japan</li>
-                        <li className="dropdown-item" onClick = {() => this.props.toggleCountry('ru')}>Russia</li>
+                        <li className="dropdown-item" onClick = {() => this.handleCountryChange('in')}>India</li>
+                        <li className="dropdown-item" onClick = {() => this.handleCountryChange('us')}>USA</li>
+                        <li className="dropdown-item" onClick = {() => this.handleCountryChange('gb')}>United Kingdom</li>
+                        <li className="dropdown-item" onClick = {() => this.handleCountryChange('jp')}>Japan</li>
+                        <li className="dropdown-item" onClick = {() => this.handleCountryChange('ru')}>Russia</li>
                       </ul>
                     </div>
                     <form className="d-flex">

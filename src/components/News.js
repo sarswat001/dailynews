@@ -5,15 +5,13 @@ import NewsItem from "./NewsItem";
 import Spinner from "./Spinner";
 
 export class News extends Component {
-  PAGE_SIZE = this.props.pageSize;
-  NEWS_API = `https://newsapi.org/v2/top-headlines?country=${this.props.country}&category=${this.props.category}&apiKey=cf1c8fc27675493fb97fb2542a73a8cd&pageSize=${this.PAGE_SIZE}`;
+  
+  NEWS_API = `https://newsapi.org/v2/top-headlines?country=${this.props.country}&category=${this.props.category}&apiKey=cf1c8fc27675493fb97fb2542a73a8cd`;
 
   static defaultProps = {
-    pageSize: 6,
     category: "global",
   };
   static propTypes = {
-    pageSize: PropTypes.number,
     category: PropTypes.string,
   };
   constructor(props) {
@@ -67,6 +65,13 @@ export class News extends Component {
     });
   };
 
+  componentDidUpdate(prevProps, prevState) {
+    if (this.props.country !== prevProps.country) {
+      this.NEWS_API = `https://newsapi.org/v2/top-headlines?country=${this.props.country}&category=${this.props.category}&apiKey=cf1c8fc27675493fb97fb2542a73a8cd`;
+      this.fetchResults(this.NEWS_API);
+    }
+  }
+
   render() {
     return (
       <>
@@ -81,10 +86,11 @@ export class News extends Component {
               backgroundColor: "white",
             }}
           >
-            NewsMonkey - Top Headlines
+            {`${this.camelCase(this.props.category)} - Top Headlines`}
           </div>
           {this.state.loading && <Spinner/>}
           <InfiniteScroll
+            key={`infinteScroll-${Math.ceil(Math.random*100)}`}
             dataLength={this.state.articles.length}
             next={this.fetchMoreData}
             hasMore={this.state.articles.length !== this.state.totalResults}
