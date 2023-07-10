@@ -1,82 +1,119 @@
-import PropTypes from 'prop-types';
-import React, { Component } from 'react';
-import NewsItem from './NewsItem';
-import Spinner from './Spinner';
+import PropTypes from "prop-types";
+import React, { Component } from "react";
+import InfiniteScroll from "react-infinite-scroll-component";
+import NewsItem from "./NewsItem";
+import Spinner from "./Spinner";
 
 export class News extends Component {
-    PAGE_SIZE = this.props.pageSize;
-    NEWS_API = `https://newsapi.org/v2/top-headlines?country=in&category=${this.props.category}&apiKey=cf1c8fc27675493fb97fb2542a73a8cd&pageSize=${this.PAGE_SIZE}`;
-    
-    static defaultProps = {
-      pageSize: 6,
-      category: "general"
-    }
-    static propTypes = {
-      pageSize: PropTypes.number,
-      category: PropTypes.string
-    }
-    constructor(props){
-        super(props);
-        this.state = {
-            articles: [],
-            loading:false,
-            page:1
-        }
-    }
+  PAGE_SIZE = this.props.pageSize;
+  NEWS_API = `https://newsapi.org/v2/top-headlines?country=${this.props.country}&category=${this.props.category}&apiKey=cf1c8fc27675493fb97fb2542a73a8cd&pageSize=${this.PAGE_SIZE}`;
 
-    fetchResults = async (API)=>{
-      let url = API;
-      this.setState({loading:true});
-      let data = await fetch(url);
-      let parsedData = await data.json();
-      this.setState({
-        articles:parsedData.articles,
-        totalResults:parsedData.totalResults,
-        loading:false
-      });
+  static defaultProps = {
+    pageSize: 6,
+    category: "global",
+  };
+  static propTypes = {
+    pageSize: PropTypes.number,
+    category: PropTypes.string,
+  };
+  constructor(props) {
+    super(props);
+    if (this.props.category === "global") {
+      this.NEWS_API = this.NEWS_API.replace("&category=global", "");
     }
+    this.state = {
+      articles: [],
+      loading: true,
+      page: 1,
+      totalResults: 0
+    };
+    document.title =
+      this.props.category === "global"
+        ? "NewsMonkey - Get Daily News Here"
+        : `NewsMonkey - ${this.camelCase(this.props.category)}`;
+  }
 
-    async componentDidMount(){
-      this.fetchResults(this.NEWS_API);
-    }
+  camelCase = (string) => {
+    return string.charAt(0).toUpperCase() + string.slice(1);
+  };
 
-    handlePrevClick = async ()=>{
-      let API = `${this.NEWS_API}&page=${this.state.page-1}`;
-      this.fetchResults(API);
-      this.setState({
-        page: this.state.page-1
-      })
-    }
+  fetchResults = async (API) => {
+    this.props.setProgress(10);
+    let url = API;
+    let data = await fetch(url);
+    this.props.setProgress(30);
+    let parsedData = await data.json();
+    this.props.setProgress(70);
+    this.setState({
+      articles: parsedData.articles,
+      totalResults: parsedData.totalResults,
+      loading: false,
+    });
+    this.props.setProgress(100);
+  };
 
-    handleNextClick = async ()=>{
-      let API = `${this.NEWS_API}&page=${this.state.page+1}`;
-      this.fetchResults(API);
-      this.setState({
+  async componentDidMount() {
+    this.fetchResults(this.NEWS_API);
+  }
+
+  fetchMoreData = async () => {
+    let url = `${this.NEWS_API}&page=${this.state.page + 1}`;
+    let data = await fetch(url);
+    let parsedData = await data.json();
+    this.setState({
+      articles: this.state.articles.concat(parsedData.articles),
+      totalResults: parsedData.totalResults,
       page: this.state.page+1
-      })
-    }
-    
-    render() {
-      return (
-        <>
-          <div className="container my-3 py-5">
-            <p className='text-center' style={{fontFamily:'Helvetica',fontSize:'22pt',fontWeight:'bold'}}>NewsMonkey - Top Headlines</p>
-            {this.state.loading && <Spinner/>}
-            <div className="row">
-                {!this.state.loading && this.state.articles.map((element)=>{
-                    return <div className="col-md-4" key={element.url}>
-                    <NewsItem title={element.title} description={element.description} imageURL={element.urlToImage} url={element.url}/>
+    });
+  };
+
+  render() {
+    return (
+      <>
+        <div className="container">
+          <div
+            className="container fixed-top text-center mt-5 pt-4 pb-3"
+            style={{
+              fontFamily: "Helvetica",
+              fontSize: "18pt",
+              fontWeight: "bold",
+              zIndex: 100,
+              backgroundColor: "white",
+            }}
+          >
+            NewsMonkey - Top Headlines
+          </div>
+          {this.state.loading && <Spinner/>}
+          <InfiniteScroll
+            dataLength={this.state.articles.length}
+            next={this.fetchMoreData}
+            hasMore={this.state.articles.length !== this.state.totalResults}
+            loader={<Spinner/>}
+          >
+            <div className="container mt-5 pt-5">
+              <div className="row">
+                {this.state.articles.map((element) => {
+                  return (
+                    <div className="col-md-3" key={element.url}>
+                      <NewsItem
+                        title={element.title}
+                        description={element.description}
+                        imageURL={element.urlToImage}
+                        url={element.url}
+                        author={element.author}
+                        publishedAt={element.publishedAt}
+                        source={element.source.name}
+                      />
                     </div>
+                  );
                 })}
+              </div>
             </div>
-          </div>
-          <div className="container fixed-bottom d-flex justify-content-center" style={{backgroundColor:'white',paddingTop:'15px',paddingBottom:'15px'}}>
-            <button disabled={this.state.page<=1} type="button" className="btn btn-dark mx-2" onClick={this.handlePrevClick}>&larr;Previous</button>
-            <button disabled={(this.state.page+1)*this.PAGE_SIZE>100 | this.state.page+1 > Math.ceil(this.state.totalResults/this.PAGE_SIZE)} type="button" className="btn btn-dark" onClick={this.handleNextClick}>Next&rarr;</button>
-          </div>
-        </>
-      )
+          </InfiniteScroll>
+        </div>
+      </>
+    );
   }
 }
 
-export default News
+export default News;
