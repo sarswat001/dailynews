@@ -9,6 +9,10 @@ export class Navbar extends Component {
     this.props.toggleCountry(countryCode);
   };
 
+  handleSearchChange = (event)=>{
+    this.props.setSearch(event.target.value);
+  }
+  
   render() {
     return (
       <div>
@@ -33,7 +37,7 @@ export class Navbar extends Component {
                         <span style={{fontSize:'10px'}}>country :</span>&nbsp;<strong>{this.props.countryName}</strong>
                       </button>
 
-                      <ul className="dropdown-menu">
+                      <ul className="dropdown-menu" style={{cursor:'pointer'}}>
                         <li className="dropdown-item" onClick = {() => this.handleCountryChange('in')}>India</li>
                         <li className="dropdown-item" onClick = {() => this.handleCountryChange('us')}>USA</li>
                         <li className="dropdown-item" onClick = {() => this.handleCountryChange('gb')}>United Kingdom</li>
@@ -42,7 +46,7 @@ export class Navbar extends Component {
                       </ul>
                     </div>
                     <form className="d-flex">
-                        <input className="form-control me-2" type="search" placeholder="Search" aria-label="Search"/>
+                        <input className="form-control me-2" value={this.props.search} onChange={this.handleSearchChange.bind(this)} type="search" placeholder="Search" aria-label="Search"/>
                         <button className="btn btn-outline-success" type="submit">Search</button>
                     </form>
                 </div>

@@ -21,7 +21,8 @@ export default class App extends Component {
     super(props);
     this.state = {
         country:'in',
-        progress: 0
+        progress: 0,
+        search:''
     }
     this.toggleCountry = this.toggleCountry.bind(this);
   }
@@ -33,6 +34,10 @@ export default class App extends Component {
   toggleCountry = (country)=>{
     this.setState({country:country});
   }
+
+  setSearch = (input)=>{
+    this.setState({search:input})
+  }
   render() {
     return (
       <div>
@@ -42,19 +47,20 @@ export default class App extends Component {
             progress={this.state.progress}
           />
           <Navbar
-            history={this.props.history}
             countryName={this.countryMap.get(this.state.country)}
             toggleCountry={this.toggleCountry}
+            search={this.state.search}
+            setSearch={this.setSearch}
           />
           <Routes>
-            <Route exact path="/" element={<News setProgress={this.setProgress} key="main" pageSize={12} country={this.state.country} />} />
-            <Route exact path="/general" element={<News setProgress={this.setProgress} key="general" pageSize={8} category="general" country={this.state.country} />} />
-            <Route exact path="/business" element={<News setProgress={this.setProgress} key="business" pageSize={8} category="business" country={this.state.country} />} />
-            <Route exact path="/entertainment" element={<News setProgress={this.setProgress} key="entertainment" pageSize={8} category="entertainment" country={this.state.country} />} />
-            <Route exact path="/health" element={<News setProgress={this.setProgress} key="health" pageSize={8} category="health" country={this.state.country} />} />
-            <Route exact path="/science" element={<News setProgress={this.setProgress} key="science" pageSize={8} category="science" country={this.state.country} />} />
-            <Route exact path="/sports" element={<News setProgress={this.setProgress} key="sports" pageSize={8} category="sports" country={this.state.country} />} />
-            <Route exact path="/technology" element={<News setProgress={this.setProgress} key="technology" pageSize={8} category="technology" country={this.state.country} />} />
+            <Route exact path="/" element={<News setProgress={this.setProgress} key="main" country={this.state.country} search={this.state.search}/>} />
+            <Route exact path="/general" element={<News setProgress={this.setProgress} key="general" category="general" country={this.state.country}  search={this.state.search} />} />
+            <Route exact path="/business" element={<News setProgress={this.setProgress} key="business" category="business" country={this.state.country}  search={this.state.search} />} />
+            <Route exact path="/entertainment" element={<News setProgress={this.setProgress} key="entertainment" category="entertainment" country={this.state.country}  search={this.state.search} />} />
+            <Route exact path="/health" element={<News setProgress={this.setProgress} key="health" category="health" country={this.state.country}  search={this.state.search} />} />
+            <Route exact path="/science" element={<News setProgress={this.setProgress} key="science" category="science" country={this.state.country}  search={this.state.search} />} />
+            <Route exact path="/sports" element={<News setProgress={this.setProgress} key="sports" category="sports" country={this.state.country}  search={this.state.search} />} />
+            <Route exact path="/technology" element={<News setProgress={this.setProgress} key="technology" category="technology" country={this.state.country}  search={this.state.search} />} />
           </Routes>
         </Router>
       </div>

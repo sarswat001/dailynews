@@ -10,6 +10,7 @@ export class News extends Component {
 
   static defaultProps = {
     category: "global",
+    search: "global"
   };
   static propTypes = {
     category: PropTypes.string,
@@ -19,6 +20,9 @@ export class News extends Component {
     if (this.props.category === "global") {
       this.NEWS_API = this.NEWS_API.replace("&category=global", "");
     }
+    // if (this.props.search === "global") {
+    //   this.NEWS_API = this.NEWS_API.replace("&q=global", "");
+    // }
     this.state = {
       articles: [],
       loading: true,
@@ -66,8 +70,14 @@ export class News extends Component {
   };
 
   componentDidUpdate(prevProps, prevState) {
-    if (this.props.country !== prevProps.country) {
-      this.NEWS_API = `https://newsapi.org/v2/top-headlines?country=${this.props.country}&category=${this.props.category}&apiKey=cf1c8fc27675493fb97fb2542a73a8cd`;
+    if (this.props.country !== prevProps.country || this.props.search !== prevProps.search) {
+      this.NEWS_API = `https://newsapi.org/v2/top-headlines?country=${this.props.country}&category=${this.props.category}&q=${this.props.search}&apiKey=cf1c8fc27675493fb97fb2542a73a8cd`;
+      if (this.props.category === "global") {
+        this.NEWS_API = this.NEWS_API.replace("&category=global", "");
+      }
+      if (this.props.search === "global") {
+        this.NEWS_API = this.NEWS_API.replace("&q=global", "");
+      }
       this.fetchResults(this.NEWS_API);
     }
   }
