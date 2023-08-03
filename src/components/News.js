@@ -31,8 +31,8 @@ export class News extends Component {
     };
     document.title =
       this.props.category === "global"
-        ? "NewsMonkey - Get Daily News Here"
-        : `NewsMonkey - ${this.camelCase(this.props.category)}`;
+        ? "DailyNews - Get Daily News Here"
+        : `DailyNews - ${this.camelCase(this.props.category)}`;
   }
 
   camelCase = (string) => {
