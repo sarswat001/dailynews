@@ -24,7 +24,7 @@ export default class App extends Component {
         progress: 0,
         search:''
     }
-    this.toggleCountry = this.toggleCountry.bind(this);
+    //this.toggleCountry = this.toggleCountry.bind(this);
   }
   
   setProgress = (progress)=>{
